@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>API Assigment 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <section>
+        <h1>Dog API</h1>
+        <form id="dog-num-form">
+            <div>
+                <h3>How many dog photos do you want between 3-50?</h3>
+                <input type="text" id="num-dog" placeholder="Default photo # is 3" required />
+            </div>
+            <div>
+                <input type="submit" value="Get Dog Photo!">
+            </div>
+            <div class="results hidden">
+                <h3>Here is the doggie pictures!</h3>
+            </div>
+        </form>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
