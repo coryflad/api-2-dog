@@ -1,8 +1,8 @@
 "use strict";
 // uses the number value to get the apprproiate # of images
 function getImage(numInput) {
-    if (numInput < 3) {
-        fetch("https://dog.ceo/api/breeds/image/random/3")
+    if (numInput < 0) {
+        fetch("https://dog.ceo/api/breeds/image/random/")
             .then(response => response.json())
             .then(responseJson => displayDogs(responseJson))
             .catch(error => alert("Something went wrong. Try again later."));
