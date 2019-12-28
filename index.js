@@ -1,18 +1,17 @@
 "use strict";
 // uses the number value to get the apprproiate # of images
+
 function getImage(numInput) {
     if (numInput < 0) {
-        fetch("https://dog.ceo/api/breeds/image/random/")
+        fetch('https://dog.ceo/api/breeds/image/random/3')
             .then(response => response.json())
             .then(responseJson => displayDogs(responseJson))
-            .catch(error => alert("Something went wrong. Try again later."));
     } else if (numInput > 50) {
-        return alert("Please choose a number equal or less than 50");
+        return alert('Hey fuckface, choose a number equal of less then 50');
     } else {
         fetch(`https://dog.ceo/api/breeds/image/random/${numInput}`)
             .then(response => response.json())
-            .then(responseJson => displayDogs(responseJson))
-            .catch(error => alert("Something went wrong. Try again later."));
+            .then(responseJson => console.log(responseJson));
     }
 }
 
@@ -27,18 +26,17 @@ function displayDogs(responseJson) {
     $(".results").removeClass("hidden");
 }
 
-// passes the number value from user from to getImage
+// passes the number value from the user to getImage
 function userInput() {
-    $("#dog-num-form").submit(e => {
+    $('#dog-num-form').submit(e => {
         e.preventDefault();
-        let userNum = $("#num-dog").val();
+        let userNum = $('#num-dog').val();
         getImage(userNum);
     });
 }
 
-
 $(function () {
-    console.log("App loaded! Waiting for submit!")
+    console.log('App loaded! Waiting for submit!')
     userInput();
 });
 
