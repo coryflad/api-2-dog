@@ -7,7 +7,7 @@ function getImage(numInput) {
             .then(responseJson => displayDogs(responseJson))
             .catch(error => alert('Somthing went wrong. Try again later.'));
     } else if (numInput > 50) {
-        return alert('Hey fuckface, choose a number equal of less then 50');
+        return alert('choose a number equal of less then 50');
     } else {
         fetch(`https://dog.ceo/api/breeds/image/random/${numInput}`)
             .then(response => response.json())

@@ -1,44 +1,61 @@
-"use strict";
-// uses the number value to get the apprproiate # of images
+'use strict';
 
-function getImage(numInput) {
-    if (numInput < 0) {
-        fetch('https://dog.ceo/api/breeds/image/random/3')
-            .then(response => response.json())
-            .then(responseJson => displayDogs(responseJson))
-    } else if (numInput > 50) {
-        return alert('Hey fuckface, choose a number equal of less then 50');
-    } else {
-        fetch(`https://dog.ceo/api/breeds/image/random/${numInput}`)
-            .then(response => response.json())
-            .then(responseJson => console.log(responseJson));
-    }
+// uses the number entered by the user and generates the url
+function getImages(number) {
+
+    const url = `https://dog.ceo/api/breeds/image/random/${number}`;
+
+    console.log(url);
+
+    // gets images from the API
+    fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText);
+        })
+        .then(responseJson => displayImage(responseJson))
+        .catch(err => {
+            console.log(err);
+        });
 }
 
-// adds the dog images to the DOM
-function displayDogs(responseJson) {
+// displays the images to the DOM
+function displayImage(responseJson) {
+
     console.log(responseJson);
-    $(".results").html("");
-    responseJson.message.forEach(renderedImg => {
-        $(".results").append(`<img src="${renderedImg}" class="results">`);
+
+    $('.results').html('');
+    responseJson.message.forEach(image => {
+        $('.results').append(`<img src="${image}" class="results">`);
+
+        $('.results').removeClass('hidden');
     });
-    //display the results section
-    $(".results").removeClass("hidden");
+
 }
 
-// passes the number value from the user to getImage
+// watches for the number the user inputs
 function userInput() {
-    $('#dog-num-form').submit(e => {
-        e.preventDefault();
-        let userNum = $('#num-dog').val();
-        getImage(userNum);
-    });
+
+    $('#dog-num-form').submit(event => {
+
+        event.preventDefault();
+
+        let number = $('#num-dog').val();
+
+        console.log(number);
+        if (number > 50) {
+            alert('please enter a number less than 50')
+        } else {
+            getImages(number);
+        }
+    })
+
+
 }
 
-$(function () {
-    console.log('App loaded! Waiting for submit!')
-    userInput();
-});
+$(userInput);
 
 
 
