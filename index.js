@@ -28,11 +28,9 @@ function displayImage(responseJson) {
 
     $('.results').html('');
     responseJson.message.forEach(image => {
-        $('.results').append(`<img src="${image}" class="results">`);
-
-        $('.results').removeClass('hidden');
+        $('.results').append(`<img src="${image}">`);
     });
-
+    $('.results').removeClass('hidden');
 }
 
 // watches for the number the user inputs
